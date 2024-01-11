@@ -33,6 +33,14 @@ public class Article {
 		this.body = (String) articleMap.get("body");
 	}
 
+	public LocalDateTime getRegDate() {
+		return regDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
 	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
@@ -50,19 +58,25 @@ public class Article {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getBody() {
 		return body;
 	}
+
 	public void setBody(String body) {
 		this.body = body;
 	}
+
 }
