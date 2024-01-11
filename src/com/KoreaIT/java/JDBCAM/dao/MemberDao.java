@@ -4,12 +4,30 @@ import java.sql.Connection;
 
 import com.KoreaIT.java.JDBCAM.util.DBUtil;
 import com.KoreaIT.java.JDBCAM.util.SecSql;
+import java.util.Map;
 
+import com.KoreaIT.java.JDBCAM.dto.Member;
 public class MemberDao {
 	private Connection conn;
 
 	public MemberDao(Connection conn) {
 		this.conn = conn;
+	}
+
+	public Member getMemberByLoginId(String loginId) {
+		SecSql sql = new SecSql();
+
+		sql.append("SELECT *");
+		sql.append("FROM `member`");
+		sql.append("WHERE loginId = ?;", loginId);
+
+		Map<String, Object> memberMap = DBUtil.selectRow(conn, sql);
+
+		if (memberMap.isEmpty()) {
+			return null;
+		}
+
+		return new Member(memberMap);
 	}
 
 	public boolean isLoginIdDup(String loginId) {
