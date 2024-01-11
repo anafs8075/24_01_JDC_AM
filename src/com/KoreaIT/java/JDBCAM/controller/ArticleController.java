@@ -16,6 +16,10 @@ public class ArticleController {
 		this.articleService = Container.articleService;
 	}
 	public void doWrite() {
+		if (Container.session.isLogined() == false) {
+			System.out.println("로그인 후 이용해줘");
+			return;
+		}
 		System.out.println("==글쓰기==");
 		System.out.print("제목 : ");
 		String title = Container.sc.nextLine();
@@ -41,6 +45,11 @@ public class ArticleController {
 	}
 
 	public void doModify(String cmd) {
+
+		if (Container.session.isLogined() == false) {
+			System.out.println("로그인 후 이용해줘");
+			return;
+		}
 		int id = 0;
 		try {
 			id = Integer.parseInt(cmd.split(" ")[2]);
@@ -91,6 +100,10 @@ public class ArticleController {
 		System.out.println("내용 : " + article.getBody());
 	}
 	public void doDelete(String cmd) {
+		if (Container.session.isLogined() == false) {
+			System.out.println("로그인 후 이용해줘");
+			return;
+		}
 		int id = 0;
 		try {
 			id = Integer.parseInt(cmd.split(" ")[2]);
