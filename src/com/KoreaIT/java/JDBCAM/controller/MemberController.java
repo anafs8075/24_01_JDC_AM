@@ -12,6 +12,15 @@ public class MemberController {
 	public MemberController() {
 		this.memberService = Container.memberService;
 	}
+	
+	public void showProfile() {
+		if (Container.session.loginedMemberId == -1) {
+			System.out.println("로그인 상태가 아님");
+			return;
+		} else {
+			System.out.println(Container.session.loginedMember);
+		}
+	}
 	public void login() {
 		String loginId = null;
 		String loginPw = null;
@@ -60,6 +69,8 @@ public class MemberController {
 				System.out.println("일치하지 않아");
 				continue;
 			}
+			Container.session.loginedMember = member;
+			Container.session.loginedMemberId = member.getId();
 
 			System.out.println(member.getName() + "님 환영");
 			break;
