@@ -25,7 +25,9 @@ public class ArticleController {
 		String title = Container.sc.nextLine();
 		System.out.print("내용 : ");
 		String body = Container.sc.nextLine();
-		int id = articleService.doWrite(title, body);
+		int memberId = Container.session.loginedMemberId;
+
+		int id = articleService.doWrite(memberId, title, body);
 		System.out.println(id + "번 글이 생성되었습니다");
 	}
 	public void showList() {
@@ -45,7 +47,6 @@ public class ArticleController {
 	}
 
 	public void doModify(String cmd) {
-
 		if (Container.session.isLogined() == false) {
 			System.out.println("로그인 후 이용해줘");
 			return;
